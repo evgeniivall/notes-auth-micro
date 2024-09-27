@@ -52,7 +52,7 @@ exports.logout = async function (req, res, next) {
   jsend(res, 200, "success");
 };
 
-exports.authenticate = async function (req, res, next) {
+exports.introspect = async function (req, res, next) {
   try {
     jsend(res, 200, "success", { id: req.user.id, role: req.user.role });
   } catch (error) {
