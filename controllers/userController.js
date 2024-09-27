@@ -1,7 +1,7 @@
 const User = require("../models/User");
-const HanlderFactory = require("./handlerFactory");
+const HandlerFactory = require("./handlerFactory");
 
-const userHandlers = new HanlderFactory(User, "user");
+const userHandlers = new HandlerFactory(User, "user");
 
 exports.getAllUsers = userHandlers.getAll();
 exports.getUser = userHandlers.getOne();
