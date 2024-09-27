@@ -129,11 +129,12 @@ exports.resetPassword = async function (req, res, next) {
 
 exports.changePassword = async function (req, res, next) {
   try {
-    const { id: userId, currentPassword, password } = req.body;
+    const { currentPassword, password } = req.body;
+    const userId = req.params.userId;
 
-    if (!currentPassword || !userId || !password) {
+    if (!currentPassword || !password) {
       throw new AppError(
-        "Please provide all required fields: id, currentPassword, and password",
+        "Please provide all required fields: currentPassword, and password",
         400
       );
     }
