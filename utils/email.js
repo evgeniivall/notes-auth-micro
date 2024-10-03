@@ -14,15 +14,14 @@ module.exports = class Email {
 
   createTransport() {
     let prefix = "";
-    if (process.env.NODE_ENV === "development") prefix = "MAILTRAP";
-    else prefix = "BREVO";
+    if (process.env.NODE_ENV === "development") prefix = "MAILTRAP_";
 
     return nodemailer.createTransport({
-      host: process.env[`${prefix}_HOST`],
-      port: process.env[`${prefix}_PORT`],
+      host: process.env[`${prefix}EMAIL_HOST`],
+      port: process.env[`${prefix}EMAIL_PORT`],
       auth: {
-        user: process.env[`${prefix}_USERNAME`],
-        pass: process.env[`${prefix}_PASSWORD`],
+        user: process.env[`${prefix}EMAIL_USERNAME`],
+        pass: process.env[`${prefix}EMAIL_PASSWORD`],
       },
     });
   }
