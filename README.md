@@ -2,6 +2,8 @@
 
 `notes-auth-micro` is a microservice responsible for **user authentication**, **authorization**, and **user data management** in the Notes Application system. It also handles **email notifications** for signup and password reset functionalities. The service provides essential authentication routes such as signup, login, password management, and exposes an introspection API used by the API Gateway for role-based access control decisions.
 
+![System architcture](https://github.com/evgeniivall/notes-auth-micro/blob/development/images/notes-app-system-design-auth-service.png)
+
 ## Features
 
 - **Generic Service**: Can be reused in other projects, providing flexibility for user authentication and authorization needs.
@@ -20,7 +22,6 @@
 - **Docker** for containerization.
 
 ## API
-
 ### Authentication Routes
 
 | **Method** | **Route**                        | **Description**                                       |
@@ -43,7 +44,8 @@
 | PATCH      | `/api/v1/users/:userID` | Update details of a specific user   |
 | DELETE     | `/api/v1/users/:userID` | Delete a specific user              |
 
-## User Model
+## Implemenation Details
+### User Model
 
 The `User` model contains the following fields:
 
@@ -59,7 +61,10 @@ The `User` model contains the following fields:
 | `resetPasswordTokenExpires` | Date     | No           | Expiration date for the reset password token.        |
 | `active`                    | Boolean  | No           | Default is true, not selected by default.            |
 
-## Environment Variables
+### Token Validation Flow
+![Token Validation Flow](https://github.com/evgeniivall/notes-auth-micro/blob/development/images/token-validation.png)
+
+### Environment Variables
 
 To run this service, configure the following environment variables in your `.env` file:
 
@@ -82,7 +87,7 @@ To run this service, configure the following environment variables in your `.env
 | `MAILTRAP_EMAIL_USERNAME`             | MailTrap SMTP username.                                        |
 | `MAILTRAP_EMAIL_PASSWORD`             | MailTrap SMTP password.                                        |
 
-## Email Configuration
+### Email Configuration
 
 - The microservice sends emails such as welcome messages and password reset tokens using a configured SMTP server.
 - During development, MailTrap is used to test emails without sending them to real users.
