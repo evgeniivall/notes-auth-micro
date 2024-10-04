@@ -101,27 +101,40 @@ git clone https://github.com/yourusername/notes-auth-micro.git
 cd notes-auth-micro
 ```
 
-2. Install dependencies:
+2. Set up your environment variables by creating a `.env` file in the root directory with the required settings (as outlined in the [Environment Variables](#environment-variables) section).
 
+3. Ensure MongoDB is running either locally or through Docker.
+If you are not using docker-compose, MongoDB must be started manually.
+
+To run MongoDB using Docker:
 ```bash
-npm install
+docker run --name mongodb -p 27017:27017 -d mongo:6.0
 ```
+4. Run the application using one of the following methods:
 
-3. Set up your environment variables by creating a `.env` file in the root directory with the required settings (as outlined in the [Environment Variables](#environment-variables) section).
+	4.1 Option 1: Run the application with npm (requires local dependencies installation)
+	```bash
+	npm install
+	npm start
+	```
 
-4. Run the application:
+	4.2. Option 2: Run the application using **Docker**
 
-```bash
-npm start
-```
+	1. Build the image 
+	```bash
+	docker build -t notes-auth-micro .
+	```
+	2. Run the container
+	```bash
+	docker run --env-file .env -p 3001:3001 notes-auth-micro
+	```
 
-5. Run the application using Docker:
+	4.3. Option 3: Run the application using **docker-compose**
+	```bash
+	docker-compose up --build
+	```
 
-```bash
-docker-compose up --build
-```
-
-6. The service will be available at `http://localhost:3000` by default.
+5. The service will be available at `http://localhost:3000` by default.
 
 ## Usage
 
