@@ -115,6 +115,12 @@ npm install
 npm start
 ```
 
+5. Run the application using Docker:
+
+```bash
+docker-compose up --build
+```
+
 6. The service will be available at `http://localhost:3000` by default.
 
 ## Usage
